@@ -1,0 +1,4 @@
+D:\Визуалка\testtst\obj\Debug\testtst.csprojAssemblyReference.cache
+D:\Визуалка\testtst\obj\Debug\testtst.Form1.resources
+D:\Визуалка\testtst\obj\Debug\testtst.Properties.Resources.resources
+D:\Визуалка\testtst\obj\Debug\testtst.csproj.GenerateResource.cache
