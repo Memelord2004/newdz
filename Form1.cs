@@ -18,13 +18,17 @@ namespace tamagoch
         int satiety = 100;
         int hp = 70;
         int happines = 10;
+
         public Form1()
         {
             InitializeComponent();
             pictureBox1.BackColor = Color.FromArgb(0, 0, 0, 0);
-            timer1.Interval = 5000;
+            timer1.Interval = 1000;
             timer1.Start();
-
+            label4.Text = "70";
+            label3.Text = "100";
+            label2.Text = "10";
+            label9.Text = "10";
 
         }
 
@@ -36,7 +40,7 @@ namespace tamagoch
         private void eat_Click(object sender, EventArgs e)
         {
             Random rnd2 = new Random();
-            int value2 = rnd2.Next(0, 3);
+            int value2 = rnd2.Next(0, 2);
             switch (value2)
             {
                 case 0:
@@ -46,14 +50,16 @@ namespace tamagoch
                         );
                     satiety = 100;
                     label3.Text = satiety.ToString();
+                    happines = happines + 10;
                     break;
                 case 1:
                     MessageBox.Show(
-                "Вы покормили своего питомца!",
+                    "Вы покормили своего питомца!",
                             "УраКласс"
                                     );
                     satiety = 100;
                     label3.Text = satiety.ToString();
+                    happines = happines + 10;
                     break;
                 case 2:
                     MessageBox.Show(
@@ -62,16 +68,12 @@ namespace tamagoch
                                         );
                     satiety = satiety;
                     label3.Text = satiety.ToString();
-                    break;
-                case 3:
-                    MessageBox.Show(
-                        "Ваш питомец не захотел есть вашу еду",
-                                   "Вы черт"
-                                        );
-                    satiety = satiety;
-                    label3.Text = satiety.ToString();
+                    happines = happines - 10;
+                    hp = hp - 10;
                     break;
             }
+
+
         }
 
         private void Stats_Click(object sender, EventArgs e)
@@ -111,12 +113,72 @@ namespace tamagoch
                     satiety = satiety - 10;
                     break;
                 case 2:
-                    satiety = satiety - 1;
+                    satiety = satiety - 5;
                     break;
                 case 3:
                     satiety = satiety - 5;
                     break;
             }
+            if (satiety == 30 | satiety == 35 | satiety == 25)
+            {
+
+                DialogResult result = MessageBox.Show(
+                    "Ваш питомец сильно проголодался" + Environment.NewLine + "покормить его?",
+                    "Warning",
+                    MessageBoxButtons.YesNo
+                    ) ;
+                if(result == DialogResult.Yes)
+                {
+                    Random rnd2 = new Random();
+                    int value2 = rnd2.Next(0, 2);
+                    switch (value2)
+                    {
+                        case 0:
+                            MessageBox.Show(
+                                "Вы покормили своего питомца!",
+                                "УраКласс"
+                                );
+                            satiety = 100;
+                            label3.Text = satiety.ToString();
+                            happines = happines + 10;
+                            break;
+                        case 1:
+                            MessageBox.Show(
+                            "Вы покормили своего питомца!",
+                                    "УраКласс"
+                                            );
+                            satiety = 100;
+                            label3.Text = satiety.ToString();
+                            happines = happines + 10;
+                            break;
+                        case 2:
+                            MessageBox.Show(
+                                "Ваш питомец не захотел есть вашу еду",
+                                           "Вы черт"
+                                                );
+                            satiety = satiety;
+                            label3.Text = satiety.ToString();
+                            happines = happines - 10;
+                            hp = hp - 10;
+                            break;
+                    }
+                }
+                hp = hp - 10;
+                label4.Text = hp.ToString();
+
+
+            }
+            if (satiety < 0)
+            {
+                MessageBox.Show(
+                    "Ваш питомец Умер!" + Environment.NewLine + "Вы ужасный хозяин!",
+                    "АААААААААААА"
+                    );
+                hp = hp - 10;
+                label4.Text = hp.ToString();
+                timer1.Stop();
+            }
+
             if (obser < 100)
             {
                 Random rnd1 = new Random();     // возможность рандомного обсёра.
@@ -146,24 +208,34 @@ namespace tamagoch
                         break;
                 }
             }
-            string text = "Ваш питомец обосрался" +
-              "(нажмите кнопку toilet чтобы он сходил в туалет)" ;
+            string text = "Ваш питомец обосрался" + Environment.NewLine +
+                           "Убреретесь за ним?";
             if (obser >= 100)
             {
-                MessageBox.Show(
+                DialogResult result = MessageBox.Show(
                     text,
                     "Внимание!!!",
-                    MessageBoxButtons.OK
+                    MessageBoxButtons.YesNo
                     );
-                obser = 0;
-                break;
+                if (result == DialogResult.Yes)
+                {
+                    obser = 0;
+                    label2.Text = obser.ToString();
+                }
+    
+
             }
 
 
             label3.Text = satiety.ToString();
             label2.Text = obser.ToString();
             label1.Text = (count_sec++).ToString();
+            label9.Text = happines.ToString();
         }
-      
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
