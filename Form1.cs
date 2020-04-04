@@ -23,7 +23,7 @@ namespace tamagoch
         {
             InitializeComponent();
             pictureBox1.BackColor = Color.FromArgb(0, 0, 0, 0);
-            timer1.Interval = 1000;
+            timer1.Interval = 10000;
             timer1.Start();
             label4.Text = "70";
             label3.Text = "100";
@@ -37,7 +37,7 @@ namespace tamagoch
             throw new NotImplementedException();
         }
 
-        private void eat_Click(object sender, EventArgs e)
+        private void eat_Click(object sender, EventArgs e) //кнопка пополнения еды
         {
             Random rnd2 = new Random();
             int value2 = rnd2.Next(0, 2);
@@ -75,28 +75,33 @@ namespace tamagoch
 
 
         }
+    
 
-        private void Stats_Click(object sender, EventArgs e)
+        private void Stats_Click(object sender, EventArgs e) // кнопка статус
         {
-
+            timer1.Stop(); // вот эта штука мне все пофиксила
             string text2 = "Cытость:";
             string text3 = "Здоровье:";
             string text4 = "Радость:";
-            MessageBox.Show(
+            DialogResult result = MessageBox.Show(
                 text2 + satiety.ToString() + Environment.NewLine +
                 text3 + hp.ToString() + Environment.NewLine + text4 + happines.ToString(),
                 "Статистика"
 
                  );
+            if(result == DialogResult.OK)
+            {
+                timer1.Start();
+            }
         }
 
-        private void toilet_Click(object sender, EventArgs e)
+        private void toilet_Click(object sender, EventArgs e) // туалет
         {
             obser = 0;
             label2.Text = obser.ToString();
         }
 
-        private void heal_Click(object sender, EventArgs e)
+        private void heal_Click(object sender, EventArgs e) // хилл
         {
             hp = 100;
             label4.Text = hp.ToString();
@@ -121,41 +126,56 @@ namespace tamagoch
             }
             if (satiety == 30 | satiety == 35 | satiety == 25)
             {
-
+                timer1.Stop();
                 DialogResult result = MessageBox.Show(
                     "Ваш питомец сильно проголодался" + Environment.NewLine + "покормить его?",
                     "Warning",
                     MessageBoxButtons.YesNo
-                    ) ;
+                    ); 
+
                 if(result == DialogResult.Yes)
                 {
+                    timer1.Start();
                     Random rnd2 = new Random();
                     int value2 = rnd2.Next(0, 2);
                     switch (value2)
                     {
                         case 0:
-                            MessageBox.Show(
+                            timer1.Stop();
+                            DialogResult result1 = MessageBox.Show(
                                 "Вы покормили своего питомца!",
                                 "УраКласс"
                                 );
+                            if(result1 == DialogResult.OK)
+                            {
+                                timer1.Start();
+                            }
                             satiety = 100;
                             label3.Text = satiety.ToString();
                             happines = happines + 10;
                             break;
                         case 1:
-                            MessageBox.Show(
+                            DialogResult result2 = MessageBox.Show(
                             "Вы покормили своего питомца!",
                                     "УраКласс"
                                             );
+                            if (result2 == DialogResult.OK)
+                            {
+                                timer1.Start();
+                            }
                             satiety = 100;
                             label3.Text = satiety.ToString();
                             happines = happines + 10;
                             break;
                         case 2:
-                            MessageBox.Show(
+                            DialogResult result3 = MessageBox.Show(
                                 "Ваш питомец не захотел есть вашу еду",
                                            "Вы черт"
                                                 );
+                            if (result3 == DialogResult.OK)
+                            {
+                                timer1.Start();
+                            }
                             satiety = satiety;
                             label3.Text = satiety.ToString();
                             happines = happines - 10;
@@ -170,13 +190,19 @@ namespace tamagoch
             }
             if (satiety < 0)
             {
-                MessageBox.Show(
+                timer1.Stop();
+                DialogResult result = MessageBox.Show(
                     "Ваш питомец Умер!" + Environment.NewLine + "Вы ужасный хозяин!",
-                    "АААААААААААА"
-                    );
+                    "АААААААААААА", MessageBoxButtons.OK
+                    ); 
+                if(result == DialogResult.OK)
+                {
+                    timer1.Start();
+                }
                 hp = hp - 10;
                 label4.Text = hp.ToString();
-                timer1.Stop();
+                this.Close();
+             
             }
 
             if (obser < 100)
@@ -209,9 +235,10 @@ namespace tamagoch
                 }
             }
             string text = "Ваш питомец обосрался" + Environment.NewLine +
-                           "Убреретесь за ним?";
+                           "Уберетесь за ним?";
             if (obser >= 100)
             {
+                timer1.Stop();
                 DialogResult result = MessageBox.Show(
                     text,
                     "Внимание!!!",
@@ -219,10 +246,21 @@ namespace tamagoch
                     );
                 if (result == DialogResult.Yes)
                 {
+                    timer1.Start();
                     obser = 0;
                     label2.Text = obser.ToString();
                 }
-    
+                if(result == DialogResult.No)
+                {
+                    DialogResult result2 = MessageBox.Show(
+                        "Ладно...",
+                        "Ок?"
+                        );
+                    if(result2 == DialogResult.OK)
+                    {
+                        timer1.Start();
+                    }
+                }
 
             }
 

@@ -7,3 +7,12 @@ C:\Users\User\source\repos\tamagoch\obj\Debug\tamagoch.Properties.Resources.reso
 C:\Users\User\source\repos\tamagoch\obj\Debug\tamagoch.csproj.GenerateResource.cache
 C:\Users\User\source\repos\tamagoch\obj\Debug\tamagoch.exe
 C:\Users\User\source\repos\tamagoch\obj\Debug\tamagoch.pdb
+C:\Users\User\source\repos\tamagoch\newdz\bin\Debug\tamagoch.exe.config
+C:\Users\User\source\repos\tamagoch\newdz\bin\Debug\tamagoch.exe
+C:\Users\User\source\repos\tamagoch\newdz\bin\Debug\tamagoch.pdb
+C:\Users\User\source\repos\tamagoch\newdz\obj\Debug\tamagoch.csprojAssemblyReference.cache
+C:\Users\User\source\repos\tamagoch\newdz\obj\Debug\tamagoch.Form1.resources
+C:\Users\User\source\repos\tamagoch\newdz\obj\Debug\tamagoch.Properties.Resources.resources
+C:\Users\User\source\repos\tamagoch\newdz\obj\Debug\tamagoch.csproj.GenerateResource.cache
+C:\Users\User\source\repos\tamagoch\newdz\obj\Debug\tamagoch.exe
+C:\Users\User\source\repos\tamagoch\newdz\obj\Debug\tamagoch.pdb
